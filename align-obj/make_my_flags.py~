@@ -1,0 +1,21 @@
+from manim import *
+
+
+
+class Flags(Scene):
+    def construct(self):
+        white_rect = Rectangle(width=3, height=5, color=WHITE)
+        
+        r1, r2 = [Rectangle(width=3, height=5, color=WHITE) for _ in range(2)]
+
+        
+        # use Python's syntax to write the objects
+        # does the following: f(*[1, 2, 3]) == f(1, 2, 3)
+        self.play(*[Write(o) for o in [r1, white_rect, r2]])
+
+        # move the circles such that they surround the rectangle
+        self.play(
+            r1.animate.next_to(rectangle, LEFT).set_fill(DARK_BLUE, 0.8),
+            rectangle.animate.set_fill(WHITE, 0.8),
+            r2.animate.next_to(rectangle, RIGHT).set_fill(RED, 0.8),
+        )

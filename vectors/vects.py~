@@ -1,0 +1,49 @@
+from manim import *
+
+
+class VectorArrow(Scene):
+    def construct(self):
+        dot = Dot(ORIGIN).set_color(color=RED)
+        self.play(
+            Create(dot)
+        )
+        self.wait()
+
+        numberplane = NumberPlane()
+        self.play(
+            Create(numberplane)
+        )
+        self.wait()
+        
+        i = Arrow(ORIGIN, [1, 0, 0], buff=0).set_color(color=RED)
+        self.play(Write(i))
+        self.wait()
+
+        j = Arrow(ORIGIN, [0, 1, 0], buff=0).set_color(color=RED)
+        self.play(Write(j))
+        self.wait()
+        
+
+        origin_text = Tex(
+            r"O (0, 0)"
+        ).next_to(dot, DOWN).set_color(color=RED).scale(0.6)
+        self.play(
+            Write(origin_text)
+        )
+        self.wait()
+        
+        i_text = Tex(
+            r"\(\vec{i}\)"
+        ).next_to(i.get_end(), DOWN).set_color(color=RED)
+        self.play(
+            Write(i_text)
+        )
+        self.wait()
+
+        j_text = Tex(
+            r"\(\vec{j}\)"
+        ).next_to(j.get_end(), LEFT).set_color(color=RED)
+        self.play(
+            Write(j_text)
+        )
+        self.wait()

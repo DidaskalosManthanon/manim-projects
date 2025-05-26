@@ -1,0 +1,45 @@
+from manim import *
+
+
+class Digits(Scene):
+    def construct(self):
+        squares = [Square().scale(0.5) for _ in range(10)]
+
+        self.play(*[Write(o) for o in squares])
+
+        # align squares next to one another
+        self.play(
+            squares[4].animate.next_to(squares[5], 0.025 * LEFT),
+            squares[5].animate.next_to(squares[4], 0.025 * RIGHT),
+            squares[0].animate.next_to(squares[4], 16 * LEFT),
+            squares[-1].animate.next_to(squares[5], 16 * RIGHT),
+            squares[1].animate.next_to(squares[4],  12 * LEFT),
+            squares[-2].animate.next_to(squares[5], 12 * RIGHT),
+            squares[2].animate.next_to(squares[4], 8 * LEFT),
+            squares[-3].animate.next_to(squares[5], 8 * RIGHT),
+            squares[3].animate.next_to(squares[4], 4 * LEFT),
+            squares[-4].animate.next_to(squares[5], 4 * RIGHT),
+        )
+
+        # create numbers for each of them
+        # the Tex class will be discussed below
+        digits = [Tex(f"${i}$").scale(2) for i in range(10)]
+
+        # move the numbers on top of the squares
+        for i in range(len(digits)):
+            digits[i].move_to(squares[i])
+
+        self.play(*[Write(o) for o in digits])
+        self.wait()
+        
+        colors = [
+            BLUE_A, BLUE_B, BLUE_C, BLUE_D, BLUE_E,
+            RED_A, RED_B, RED_C, RED_D, RED_E
+            ]
+
+        self.play(
+            *[digits[i].animate.set_color(colors[i]) for i in range(len(digits))]
+        )
+        self.wait()
+
+        

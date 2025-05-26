@@ -1,0 +1,69 @@
+from manim import *
+
+
+class MultipleFrameBoxes(Scene):
+    def construct(self):
+        konig01 = MathTex(
+            r"\mathbb{V}(X)",
+            r"=",
+            r"\mathbb{E}\left[(X - \mathbb{E}[X])^2\right]",
+        )
+        self.play(
+            Write(konig01)
+        )
+
+        def make_and_move_boxes(self, k):
+            fbox01 = SurroundingRectangle(k[0], buff = .1)
+            fbox02 = SurroundingRectangle(k[2:], buff = .1)
+            self.play(
+                Create(fbox01)
+            )
+            #self.wait()         
+            self.play(ReplacementTransform(fbox01, fbox02))
+            #self.wait()
+            self.play(FadeOut(fbox02))
+
+        make_and_move_boxes(self, k=konig01)
+        
+        konig02 = MathTex(
+            r"\mathbb{V}(X)",
+            r"=",
+            r"\mathbb{E}\left[X^2 - 2X\mathbb{E}[X]",
+            r"+",
+            r"\mathbb{E}[X]^2\right]",
+        )
+        
+        konig03 = MathTex(
+            r"\mathbb{V}(X)",
+            r"=",
+            r"\mathbb{E}[X^2]",
+            r"-",
+            r"2\mathbb{E}[X]\mathbb{E}[X]",
+            r"+",
+            r"\mathbb{E}[X]^2",
+        )
+        
+        konig04 = MathTex(
+            r"\mathbb{V}(X)",
+            r"=",
+            r"\mathbb{E}[X^2]",
+            r"-",
+            r"\mathbb{E}[X]^2",
+        ).set_color(color=GREEN).scale(2)
+
+        konig = [konig01, konig02, konig03, konig04]
+        for i in range(1, len(konig)):
+            self.play(
+                ReplacementTransform(konig[i - 1], konig[i])
+            )
+            self.wait()
+            make_and_move_boxes(self, k=konig[i])
+
+        self.camera.background_color = GRAY_BROWN
+        ultimate_box = SurroundingRectangle(konig[-1], buff = .1)
+        self.play(
+            Create(ultimate_box)
+        )
+        self.wait()
+        
+        

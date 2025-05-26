@@ -1,0 +1,36 @@
+from manim import *
+
+
+class BooleanOperations(Scene):
+    def construct(self):
+        setA = Ellipse(
+            width=4.0, height=5.0, fill_opacity=0.5, color=BLUE, stroke_width=10
+        ).move_to(LEFT)
+        labelA = Tex(r"A").set_color(color=BLUE).next_to(setA, DOWN)
+        
+        setB = setA.copy().set_color(color=RED).move_to(RIGHT)
+        labelB = Tex(r"B").set_color(color=RED).next_to(setB, DOWN)
+        
+        inter_text = Tex(
+            r"Intersection"
+        ).next_to(setA, UP * 3).set_color(color=GREEN)
+        ellipse_group = Group(
+            inter_text, setA, setB, labelA, labelB
+        ).move_to(LEFT * 3)
+        self.play(FadeIn(ellipse_group))
+        
+        i = Intersection(setA, setB, color=GREEN, fill_opacity=0.5)
+        i_move = i.copy()
+        self.play(
+            Write(i),
+            i_move.animate.move_to(RIGHT * 3.5)
+        )
+        intersection_text = Tex(
+            r"\(A\cap B\)"
+        ).next_to(i, UP * 1.5).set_color(color=GREEN)
+        inter_move_text = Tex(
+            r"\(A\cap B\)"
+        ).next_to(i_move, DOWN).set_color(color=GREEN)
+        self.play(FadeIn(intersection_text, inter_move_text))
+        
+        

@@ -1,0 +1,22 @@
+from manim import *
+
+
+
+class MathTeXploration(Scene):
+    def construct(self):
+        uv = MathTex(
+            r"\dfrac{d}{dx}u(x)v(x) =",
+            r"u(x)\dfrac{d}{dx}v(x)", "+",
+            r"v(x)\dfrac{d}{dx}u(x)"
+        )
+        self.play(Write(uv))
+        framebox1 = SurroundingRectangle(uv[1], buff = .1)
+        framebox2 = SurroundingRectangle(uv[3], buff = .1)
+        self.play(
+            Create(framebox1),
+        )
+        self.wait()
+        self.play(
+            ReplacementTransform(framebox1, framebox2),
+        )
+        self.wait()

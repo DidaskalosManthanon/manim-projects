@@ -1,0 +1,26 @@
+from manim import *
+
+
+
+class ImageInterpolation(Scene):
+    def construct(self):
+        img = ImageMobject(np.uint8([[63, 0, 0, 0],
+                                     [0, 127, 0, 0],
+                                     [0, 0, 191, 0],
+                                     [0, 0, 0, 255]
+                                     ]))
+
+        img.height = 2
+        img1 = img.copy()
+        img2 = img.copy()
+        img3 = img.copy()
+        img4 = img.copy()
+        img5 = img.copy()
+
+        img1.set_resampling_algorithm(RESAMPLING_ALGORITHMS["nearest"])
+        img2.set_resampling_algorithm(RESAMPLING_ALGORITHMS["lanczos"])
+        img3.set_resampling_algorithm(RESAMPLING_ALGORITHMS["linear"])
+        img4.set_resampling_algorithm(RESAMPLING_ALGORITHMS["cubic"])
+        img4.set_resampling_algorithm(RESAMPLING_ALGORITHMS["cubic"])
+        
+        

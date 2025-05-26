@@ -1,0 +1,13 @@
+from manim import *
+
+
+class MoreBroadcastExamples(Scene):
+    def construct(self):
+        mob = Circle(radius=4, color=TEAL_A)
+        self.play(Broadcast(mob))
+        self.wait()
+        mob2 = Star(color=RED)
+        self.play(
+            Broadcast(mob2)
+        )
+        self.wait()

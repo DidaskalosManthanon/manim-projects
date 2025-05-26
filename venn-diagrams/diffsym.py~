@@ -1,0 +1,50 @@
+from manim import *
+
+
+class BooleanOperations(Scene):
+    def construct(self):
+        setA = Ellipse(
+            width=4.0, height=5.0, fill_opacity=0.5, color=BLUE, stroke_width=10
+        ).move_to(LEFT)
+        labelA = Tex(r"A").next_to(setA, DOWN).set_color(color=BLUE)
+        
+        setB = setA.copy().set_color(color=RED).move_to(RIGHT)
+        labelB = Tex(r"B").next_to(setB, DOWN).set_color(color=RED)
+        
+        diff_sym_text = Tex(
+            r"Différence symétrique"
+        ).next_to(setA, UP * 3).set_color(color=YELLOW)
+        ellipse_group = Group(
+            diff_sym_text, setA, setB, labelA, labelB
+        ).move_to(LEFT * 3)
+        self.play(FadeIn(ellipse_group))
+        
+        e = Exclusion(setA, setB, color=YELLOW, fill_opacity=0.5)
+        exclusion_text_d = Tex(
+            r"\(A\Delta B = (A\backslash B)\cup (B\backslash A)\)"
+        ).set_color(color=YELLOW)
+        exclusion_text_u = Tex(
+            r"\(A\Delta B = (A\cap B^{c})\cup (B\cap A^{c})\)"
+        ).set_color(color=YELLOW)
+        self.play(
+            e.animate.scale(0.5).move_to(RIGHT * 3.5)
+        )
+        exclusion_text_d.next_to(e, DOWN)
+        exclusion_text_u.next_to(e, UP)
+        diff_sym_text_2 = Tex(
+            r"Différence symétrique \(A\Delta B = (A\cup B)\backslash (A\cap B)\)"
+        ).next_to(
+            setA,
+            UP * 3 + 0.5 * RIGHT
+        ).set_color(color=YELLOW).scale(0.75)
+        self.play(
+            Write(exclusion_text_d),
+            Write(exclusion_text_u),
+            ReplacementTransform(
+                diff_sym_text,
+                diff_sym_text_2
+            )
+        )
+
+        
+        

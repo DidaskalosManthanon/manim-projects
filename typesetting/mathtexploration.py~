@@ -1,0 +1,66 @@
+from manim import *
+
+
+
+class MathTeXploration(Scene):
+    def construct(self):
+        text = Tex(r"I'm using \TeX{} for writing this").shift(LEFT * 2.5)
+        self.play(Write(text))
+        self.wait()
+        
+        # note that we're using Python's r-strings for cleaner code
+        formula = MathTex(
+            r"\sum_{k = 1}^{\infty} \dfrac{1}{k^2} = \dfrac{\pi^2}{6}"
+        ).shift(RIGHT * 2.5)
+        self.play(Write(formula))
+        self.wait()
+        self.play(Unwrite(formula))
+        self.wait()
+
+        knuth = "Donald Knuth", r"\TeX{}", r"./donald-knuth.jpg"
+        lamport = "Leslie Lamport", r"\LaTeX{}", r"./leslie-lamport.jpg"
+        guido = "Guido Van Rossum", r"Python", r"./guido-van-rossum.jpg"
+        sanderson = "Grant Sanderson", r"Manim", r"./3b1b.png"
+
+        names = [knuth, lamport, guido, sanderson]
+        phrases = [
+            Tex(f"Thank you {n[0]} for inventing {n[1]}!") for n in names
+        ]
+        init = text
+        for i in range(len(phrases)):
+            self.play(ReplacementTransform(init, phrases[i]))
+            self.wait()
+            img = ImageMobject(names[i][2])
+            img.height = 3
+            img.width = 2
+            self.play(FadeIn(img.next_to(phrases[i], UP)))
+            self.wait()
+            self.play(FadeOut(img))
+            init = phrases[i]
+
+        tex_example = Tex(
+            r"With \TeX{} you can write \(\pi\simeq 3.14159\dots\)"
+        )
+        self.play(
+            ReplacementTransform(phrases[-1], tex_example)
+        )
+        self.wait()
+
+        some_math = VGroup(
+            MathTex(r"\Phi = \dfrac{1 + \sqrt{5}}{2}\simeq 1.618\dots"),
+            MathTex(r"e = \sum_{n = 0}^{+\infty}\dfrac{1}{n!}\simeq 2.718\dots"),
+            MathTex(r"e^{i\pi} + 1 = 0"),
+            MathTex(r"\int_{-\infty}^{+\infty}e^{-x^2}dx = \sqrt{\pi}"),
+            MathTex(r"I_3 = \begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}")
+        )
+        old = tex_example
+        for math_eq in some_math:
+            self.play(
+                ReplacementTransform(old, math_eq)
+            )
+            self.wait()
+            old = math_eq
+        
+        
+
+        

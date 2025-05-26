@@ -1,0 +1,38 @@
+from manim import *
+
+
+class MoreApplyMatrixExamples(Scene):
+    def construct(self):
+        matrix = [[1, 2], [0, 4]]
+        t_matrix = [[1, 0], [2, 4]]
+        inv_matrix = [[1, -1/2], [0, 1/4]]
+        t_inv_matrix = [[1, 0], [-1/2, 1/4]]
+        
+        texwar = Tex(r"\TeX vs \LaTeX")
+        num_plan = NumberPlane()
+        matrices = [matrix, t_matrix]
+        inv_matrices = [inv_matrix, t_inv_matrix]
+        
+        for i in range(len(matrices)):
+            m = Matrix(matrices[i], left_bracket="[", right_bracket="]")
+            self.play(
+                Write(m.to_edge(UL)),
+                ApplyMatrix(matrices[i], texwar),
+                ApplyMatrix(matrices[i], num_plan)
+            )
+            self.wait(2)
+            
+            im = Matrix(inv_matrices[i], left_bracket="[", right_bracket="]")
+            self.play(
+                Write(im.to_edge(DR)),
+                ApplyMatrix(inv_matrices[i], texwar),
+                ApplyMatrix(inv_matrices[i], num_plan)
+            )
+            self.wait(2)
+            
+
+            self.play(
+                FadeOut(m, im)
+            )
+            
+        

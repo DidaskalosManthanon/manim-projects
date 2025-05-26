@@ -1,0 +1,36 @@
+from manim import *
+
+
+class Targets(Scene):
+    def construct(self):
+        targets = [Circle(radius=5.5 - i / 11, color=WHITE) for i in range(11)]
+
+        self.play(*[Write(o) for o in targets])
+        self.wait()
+        
+        t1, t2, t3, t4, t5 = targets
+        self.play(
+            t5.animate.set_fill(color=YELLOW, opacity=1),
+            t4.animate.set_fill(color=RED, opacity=0.9),
+            t3.animate.set_fill(color=BLUE, opacity=0.8),
+            t2.animate.set_fill(color=BLACK, opacity=0.7),
+            t1.animate.set_fill(color=WHITE, opacity=0.6),
+        )
+
+        # # align c1 and c2 such that their bottoms are the same as C2
+        # self.play(
+        #     c1.animate.align_to(c2, DOWN),
+        #     c3.animate.align_to(c2, DOWN),
+        # )
+
+        # point = [0, 2.5, 0]
+
+        # # align all circles such that their top touches a line
+        # # going through the point
+        # self.play(
+        #     c1.animate.align_to(point, UP),
+        #     c2.animate.align_to(point, UP),
+        #     c3.animate.align_to(point, UP),
+        # )
+
+        

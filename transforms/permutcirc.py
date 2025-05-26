@@ -1,0 +1,26 @@
+from manim import *
+
+
+
+class PermutCirc(Scene):
+    def construct(self):
+        btc = ImageMobject("./btc.png").shift(4 * LEFT)
+        eth = ImageMobject("./eth.jpg")
+        usdt = ImageMobject("./usdt.png")
+        xrp = ImageMobject("./xrp.jpg")
+        cryptos = [btc, eth, usdt, xrp]
+        for i in range(len(cryptos)):
+            cryptos[i].width = 2.5
+            cryptos[i].height = 2.5
+            if i > 0:
+                cryptos[i].next_to(cryptos[i - 1], 0.75 * RIGHT)
+            
+
+        self.play(
+            *[FadeIn(c) for c in cryptos]
+        )
+        self.wait()
+
+        
+        for _ in range(4):
+            self.play(CyclicReplace(*cryptos))

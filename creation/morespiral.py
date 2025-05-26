@@ -1,0 +1,17 @@
+from manim import *
+
+
+
+class MoreSpiralInExamples(Scene):
+    def construct(self):
+        # pi = MathTex(r"\pi").scale(7)
+        # pi.shift(2.25 * LEFT + 1.5 * UP)
+        circle = Circle(color=DARK_BLUE, fill_opacity=1).shift(LEFT)
+        square = Square(color=WHITE, fill_opacity=1).shift(UP)
+        star = Star(color=RED, fill_opacity=1).shift(RIGHT)
+        shapes = VGroup(circle, square, star)
+        self.play(
+            SpiralIn(shapes),
+            run_time=3
+        )
+        self.wait()

@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/digitalnomad/Documents/manim-projects/manim-voice/media/videos/translation/480p15/partial_movie_files/TranslationExample/1185818338_715053234_223132457.mp4'
+file 'file:/Users/digitalnomad/Documents/manim-projects/manim-voice/media/videos/translation/480p15/partial_movie_files/TranslationExample/624642324_819200188_4272345035.mp4'
+file 'file:/Users/digitalnomad/Documents/manim-projects/manim-voice/media/videos/translation/480p15/partial_movie_files/TranslationExample/624642324_3109459385_4272345035.mp4'
+file 'file:/Users/digitalnomad/Documents/manim-projects/manim-voice/media/videos/translation/480p15/partial_movie_files/TranslationExample/624642324_2542655030_4272345035.mp4'
+file 'file:/Users/digitalnomad/Documents/manim-projects/manim-voice/media/videos/translation/480p15/partial_movie_files/TranslationExample/624642324_3836647365_631829896.mp4'
+file 'file:/Users/digitalnomad/Documents/manim-projects/manim-voice/media/videos/translation/480p15/partial_movie_files/TranslationExample/624642324_1704852926_1071484169.mp4'

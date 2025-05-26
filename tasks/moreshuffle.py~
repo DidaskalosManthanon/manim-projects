@@ -1,0 +1,52 @@
+from manim import *
+
+
+
+class MoreShuffleExample(Scene):
+    def construct(self):
+        c11 = Circle(color=RED).shift(UP * 1.5 + LEFT * 2)
+        c12 = Circle(color=GREEN).shift(UP * 1.5 + RIGHT * 2)
+        c21 = Circle(color=BLUE).shift(DOWN * 1.5 + LEFT * 2)
+        c22 = Circle(color=WHITE).shift(DOWN * 1.5 + RIGHT * 2)
+        circles = [c11, c12, c21, c22]
+        
+        numbers = [Tex(f"\({i}\)").scale(3) for in in range(1, 5)]
+        for i in range(len(numbers)):
+            numbers[i].move_to(circles[i])
+
+
+        self.play(*[Write(c) for c in circles])
+        self.play(*[Write(n) for n in numbers])
+        self.wait()
+
+        self.play(Swap(c11, c12))
+        self.wait()
+        self.play(Swap(c12, c11, path_arc=-180 * DEGREES))
+        self.wait()
+
+        self.play(Swap(c21, c22))
+        self.wait()
+        self.play(Swap(c21, c22, path_arc=-180 * DEGREES))
+        self.wait()
+                  
+        self.play(Swap(c11, c21))
+        self.wait()
+        self.play(Swap(c11, c21, path_arc=-180 * DEGREES))
+        self.wait()
+
+        self.play(Swap(c12, c22))
+        self.wait()
+        self.play(Swap(c12, c22, path_arc=-180 * DEGREES))
+        self.wait()
+
+        self.play(Swap(c11, c22))
+        self.wait()
+        self.play(Swap(c11, c22, path_arc=-180 * DEGREES))
+        self.wait()
+
+        self.play(Swap(c21, c12))
+        self.wait()
+        self.play(Swap(c21, c12, path_arc=-180 * DEGREES))
+        self.wait()
+                  
+        #self.play(Swap(c12, c22, path_arc=-180 * DEGREES))
